@@ -5,18 +5,24 @@
         <thead>
             <tr>
                 <th>No.</th>
+                <th>Cover</th>
                 <th>Judul Buku</th>
                 <th>Pengarang</th>
                 <th>Tahun</th>
                 <th>Penerbit</th>
                 <th>Kategori</th>
-                <th>Aksi</th>
+                <th style="width: 170px;">Aksi</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($allBuku as $key => $row)
             <tr>
                 <td>{{ $key + 1 }}</td>
+                <td>
+                    @if ($row->cover)
+                        <img src="{{ asset('storage/'. $row->cover) }}" alt="Cover Buku" style="width: 80px;">
+                    @endif
+                </td>
                 <td>{{ $row->judul }}</td>
                 <td>{{ $row->pengarang }}</td>
                 <td>{{ $row->tahun_terbit }}</td>
