@@ -12,7 +12,8 @@ class PenerbitController extends Controller
      */
     public function index()
     {
-        //
+        $allPenerbit = Penerbit::all();
+        return view('penerbit.index', compact('allPenerbit'));
     }
 
     /**
@@ -20,7 +21,7 @@ class PenerbitController extends Controller
      */
     public function create()
     {
-        //
+        return view('penerbit.create');
     }
 
     /**
@@ -28,7 +29,16 @@ class PenerbitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validasi
+        $validatedData = request()->validate([
+            'nama_penerbit' => 'required|max:100',
+        ]);
+
+        // simpan data
+        Penerbit::create($validatedData);
+
+        // redirect ke index penerbit
+        return redirect()->route('penerbit.index');
     }
 
     /**
@@ -36,7 +46,7 @@ class PenerbitController extends Controller
      */
     public function show(Penerbit $penerbit)
     {
-        //
+        return view('penerbit.show', compact('penerbit'));
     }
 
     /**
@@ -44,7 +54,7 @@ class PenerbitController extends Controller
      */
     public function edit(Penerbit $penerbit)
     {
-        //
+        return view('penerbit.edit', compact('penerbit'));
     }
 
     /**
@@ -52,7 +62,16 @@ class PenerbitController extends Controller
      */
     public function update(Request $request, Penerbit $penerbit)
     {
-        //
+         // validasi
+        $validatedData = request()->validate([
+            'nama_penerbit' => 'required|max:100',
+        ]);
+
+        // update data
+        $penerbit->update($validatedData);
+
+        // redirect ke index penerbit
+        return redirect()->route('penerbit.index');
     }
 
     /**
@@ -60,6 +79,7 @@ class PenerbitController extends Controller
      */
     public function destroy(Penerbit $penerbit)
     {
-        //
+        $penerbit->delete();
+        return redirect()->route('penerbit.index');
     }
 }
