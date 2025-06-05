@@ -1,5 +1,5 @@
 @include('layout.header')
-    <h3>Tambah Penerbit</h3>
+    <h3>Edit Penerbit</h3>
     <form action="{{ route('penerbit.update', $penerbit->id) }}" method="post">
         @csrf
         @method('PUT')

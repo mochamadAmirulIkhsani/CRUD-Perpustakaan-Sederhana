@@ -1,5 +1,5 @@
 @include('layout.header')
-    <h3>Tambah Kategori</h3>
+    <h3>Edit Kategori</h3>
     <form action="{{ route('kategori.update', $kategori->id) }}" method="post">
         @csrf
         @method('PUT')
